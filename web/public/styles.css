@@ -1,0 +1,340 @@
+:root{--bg:#fffdf7;--ink:#282620;--muted:#817e72;--line:#e8e5db;--track:#eae7dc;--milk:#e5cf9e;--edge:#c5ad7e;--panel:#f5f2e9;--active:#648047}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:600 14px Nunito,system-ui,sans-serif;transition:background .35s,color .35s}body.chocolate{--bg:#241913;--ink:#f6eadd;--muted:#b7a393;--line:#49372c;--track:#3c2c23;--milk:#ba8054;--edge:#e1b88c;--panel:#32231b;--active:#c8d69f}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid var(--edge);outline-offset:6px}.app{width:min(100% - 48px,480px);margin:auto;min-height:100svh;display:flex;flex-direction:column;padding:40px 0 34px}.top{border-bottom:1px solid var(--line);padding-bottom:25px}.row{display:flex;justify-content:space-between;align-items:center}.brand{font:500 31px Fredoka,'Arial Rounded MT Bold',sans-serif;letter-spacing:-.5px}.test{font-size:9px;letter-spacing:1.8px;color:var(--muted);margin:7px 0 0}.theme{border:1px solid var(--line);border-radius:100px;background:transparent;display:flex;padding:4px;gap:4px}.theme button{border:0;border-radius:50%;width:28px;height:28px;position:relative}.white{background:#fffdf7;box-shadow:inset 0 0 0 1px #dfd9ca}.brown{background:#593a28;box-shadow:inset 0 0 0 1px #936a4c}.theme button[aria-pressed=true]:after{content:'';position:absolute;inset:-3px;border:1px solid var(--muted);border-radius:50%}.connection{margin-top:30px;display:flex;align-items:center;gap:9px;font-size:12px;color:var(--muted)}.dot{width:7px;height:7px;background:var(--muted);border-radius:50%}.live .dot{background:var(--active);box-shadow:0 0 0 4px color-mix(in srgb,var(--active) 12%,transparent)}.flavor{margin-left:auto;font-size:11px}.middle{flex:1;min-height:365px;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:30px 0}.cartonbtn{border:0;background:transparent;position:relative;padding:12px 35px;transition:transform .25s;border-radius:40px}.cartonbtn:hover{transform:translateY(-5px) rotate(-2deg)}.cartonbtn:active{transform:scale(.95)}.cartonbtn img{display:block;width:150px;height:150px;object-fit:contain;mix-blend-mode:multiply}body.chocolate .cartonbtn img{mix-blend-mode:normal;border-radius:0}.power{display:grid;place-items:center;position:absolute;right:38px;bottom:12px;border-radius:50%;background:var(--ink);color:var(--bg);width:31px;height:31px;border:3px solid var(--bg);font:400 18px system-ui}.label{font:400 23px Fredoka,sans-serif;margin:24px 0 7px}.sub{font-size:12px;color:var(--muted);text-align:center;line-height:1.7;min-height:21px;max-width:330px;margin:0}.wave{display:flex;align-items:center;justify-content:center;gap:4px;height:52px;margin-top:35px;width:100%}.wave i{display:block;width:4px;min-width:3px;height:5px;border-radius:8px;background:var(--line);transition:height .08s}.live .wave i{background:var(--ink)}.bottom{border-top:1px solid var(--line);padding-top:25px}.levelrow{display:flex;justify-content:space-between;font-size:12px}.value{color:var(--muted);font-variant-numeric:tabular-nums}.milkbar{height:43px;border:1px solid var(--line);border-radius:14px;background:var(--track);margin:16px 0 13px;position:relative;overflow:hidden}.fill{height:100%;width:0;background:var(--milk);position:relative;transition:width .14s ease-out}.fill:after{content:'';position:absolute;right:-9px;top:-25%;height:150%;width:18px;background:var(--milk);border-radius:40%;animation:swirl 2s linear infinite}.fill:before{content:'';position:absolute;inset:7px 8px;background:radial-gradient(circle at 15% 20%,#ffffff66 0 2px,transparent 3px),radial-gradient(circle at 40% 80%,#ffffff50 0 3px,transparent 4px),radial-gradient(circle at 75% 35%,#ffffff60 0 2px,transparent 3px);animation:float 3s ease-in-out infinite}.idle .fill{visibility:hidden}.idle .fill:after,.idle .fill:before{animation-play-state:paused}@keyframes swirl{to{transform:rotate(360deg)}}@keyframes float{50%{transform:translateX(8px) translateY(-3px)}}input[type=range]{width:100%;height:16px;accent-color:var(--ink);margin:0;cursor:pointer}.smallrow{display:flex;justify-content:space-between;color:var(--muted);font-size:10px;margin-top:10px}.privacy{font-size:10px;text-align:center;color:var(--muted);margin:28px 0 0;line-height:1.8}button:disabled{cursor:wait;opacity:.6}@media(min-height:850px){.app{padding-top:60px;padding-bottom:45px}.middle{min-height:430px}.cartonbtn img{width:175px;height:175px}}@media(max-width:420px){.app{width:calc(100% - 40px);padding-top:28px}.middle{min-height:340px}.wave{gap:3px}.brand{font-size:28px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+
+/* ══ Wake slider ══════════════════════════════════════════
+   lab/WakeSlider.tsx. Thin bars, the reading beside them. The bars
+   are data marks, so they take the ink strengths: ink when lit,
+   faint after the value. Heights are written by the component */
+/* Bencho's fill-on maps directly to our ink; fill-slab to ground.
+   Inherit the project's UI font. No new global design tokens. */
+.wks {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  color: var(--ink);
+  font-family: inherit;
+}
+.wks-track {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: ew-resize;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  border-radius: 6px;
+  max-width: 100%;
+  min-width: 0;
+}
+.wks-track:focus-visible { outline: 2px solid var(--edge); outline-offset: 6px; }
+.wks-bar {
+  flex: 1 1 3px;
+  min-width: 0;
+  width: 3px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--ink) 32%, var(--bg));
+  transform-origin: 50% 50%;
+  transition: background-color 160ms ease;
+}
+.wks-bar[data-on] { background: var(--ink); }
+.wks-value {
+  min-width: 4ch;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+  color: color-mix(in srgb, var(--ink) 72%, var(--bg));
+}
+@media(prefers-reduced-motion:reduce) { .wks-bar { transition: none; } }
+
+/* ── the rest of them ────────────────────────────────────────
+   Not every block has a ::before to hang a border on, and
+   giving each one a pseudo-element it does not otherwise need
+   is a lot of stylesheet for a hairline. A 1px spread shadow
+   is the same mark by another means — the create menu has
+   used exactly this since it was written, for exactly this
+   reason — and it composites without touching layout.
+
+   This is what makes Stroke honest on every entry rather than
+   on the dozen that happened to be built on a glass pane. */
+/* NOT the rows. Stroke is a question about the block's own
+   edge, and hanging it on every row inside drew four
+   hairlines in the middle of a panel that still had none
+   round it. `.lab` already carries the ::before this control
+   was built for, and the roster's box is a .lab. */
+
+/* ── a ring on a metaball ────────────────────────────────────
+   The reorder list's rows are blobs on a filtered layer, and a
+   spread shadow drawn there does not survive: the blur smears
+   it and the alpha row then crushes what is left to nothing,
+   so Stroke appeared to do nothing on this block in either
+   theme.
+
+   The ring goes on the UNFILTERED twin instead. Every row is
+   drawn twice — a blob that merges and an ink layer above it
+   that carries the avatar and the name — and the two share
+   their geometry exactly, so an outline on the top one traces
+   the shape of the bottom one for free. */
+/* ── and the node card ─────────────────────────────────────
+   It drew its hairline unconditionally for a revision, which
+   is the one thing a block with a Stroke control must not do:
+   the control then reads as broken in the Off position,
+   because the edge it promises to remove is still there. The
+   ring follows the card's own corner, which is a knob. */
+/* Only the toggle exists in this project; scope the optional
+   stroke rule to it rather than importing unrelated lab selectors. */
+[data-stroke="on"] .liq-well .liq-sw {
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+/* ════ liquid ═══════════════════════════════════════════════
+   Three studies in one filter. Prefix liq-.
+
+   Every one of these is two layers in register: opaque shapes
+   on a layer carrying url(#liq-goo), and anything that needs
+   a crisp edge — text, a hit area — riding above on a layer
+   that carries no filter at all. The goo eats translucency
+   and mangles glyphs, so nothing else can share the layer. */
+
+/* ── 1 · liquid toggle ───────────────────────────────────── */
+.liq-well {
+  /* Compact header host instead of the original 240 × 130 demo stage.
+     board / fill-slab → ground (--bg); card → surface (--panel);
+     fill-on / ink → ink (--ink); pane-edge → line (--line).
+     nod-r is not needed: this toggle is always a pill.
+     The UI font inherits Nunito. No new global tokens. */
+  width: 92px; height: 46px;
+  display: grid; place-items: center;
+  font-family: inherit;
+}
+
+/* ── BLACK AND WHITE, AND NO EDGE OF ITS OWN ────────────────
+   The on state was a green wash with a green ring, which made
+   this the only block on the bench asserting a colour nothing
+   else uses — and a switch does not need a hue to say it is
+   on. It inverts instead: a light track with a dark thumb
+   becomes a dark track with a light one, which is the strongest
+   thing two colours can say and the only thing this component
+   has to say.
+
+   `--fill-on` / `--fill-slab` rather than --ink / --board, so
+   the pair follows the Fill control the entry declares instead
+   of naming a colour twice.
+
+   And no inset ring. It carried one unconditionally, which is
+   an edge the Stroke switch cannot take away — the same bug
+   the sleep pill, the command bar and the Notify pill all had.
+   Stroke's own rule is a few hundred lines up. */
+.liq-sw {
+  position: relative;
+  width: 92px; height: 46px;
+  padding: 0; border: 0;
+  /* ── ALWAYS A PILL ────────────────────────────────────────
+     It took a Corner knob for a while and does not any more.
+     A switch is a pill: that is the shape the gesture is named
+     after, and squaring it turns a thing you slide into a
+     thing you click. The droplet inside followed the knob too,
+     concentrically, and the same argument applies twice over —
+     one number that could only ever make the component less
+     like itself. */
+  border-radius: 999px;
+  /* ── OFF IS THE SLAB, NOT A GREY ─────────────────────────
+     The two states are the two ends of the fill's own ramp,
+     and OFF is the light end of it: the track is the slab —
+     white on a light fill, near-black on a dark one — and the
+     dot is a grey mixed toward it. ON is the inversion, ink
+     track and slab dot, which is what it always was.
+
+     Read across the pair, the TRACK carries the state and the
+     dot is along for the ride. It was the other way round:
+     the off track was a 12% wash and the dot was full ink, so
+     the loud half of the switch was the part that only moves.
+
+     It reads because the card behind is not white — the stage
+     is the board's own grey, so a white pill on it is an
+     object. Stroke's hairline is there for anywhere it is
+     not. */
+  background: var(--bg);
+  cursor: pointer;
+  /* it is a rail you can push along, not only a button */
+  touch-action: none;
+  transition: background 420ms ease;
+}
+.liq-sw[data-on="true"] { background: var(--ink); }
+.liq-sw:focus-visible { outline: 2px solid var(--edge); outline-offset: 5px; }
+.liq-sw-blobs { position: absolute; inset: 0; }
+
+/* opaque on purpose: a goo filter over a translucent fill
+   thresholds the alpha away and the shape disappears */
+/* left: 0 is not optional. These are inline elements, so with
+   left: auto the static position is wherever the line box put
+   them — and the button they sit in centres its text, which
+   pushed both blobs to the middle of the track and the thumb
+   clean off the end of it. */
+/* ── the droplet, and it is the ONLY body ───────────────────
+   There was a second, smaller blob running behind it on a
+   lagging spring; the goo between them necked into a thread,
+   which is what a trail is and what it looks like. It is one
+   body that stretches now — see the note in Liquid.tsx, and
+   the dragging ball's, which lost the same thing first.
+
+   `left: 0` is not optional. It is an inline element, so with
+   `left: auto` the static position is wherever the line box
+   put it — and the button it sits in centres its text, which
+   pushed the thumb to the middle of the track.
+
+   OPAQUE on purpose: a goo filter over a translucent fill
+   thresholds the alpha away and the shape disappears. Which
+   is why the grey is a `color-mix` and not an alpha — see the
+   note where the off colour is chosen. */
+.liq-thumb {
+  position: absolute;
+  left: 0; top: 50%;
+  /* the size comes from Liquid.tsx, which also needs it for the
+     travel — one number, so the circle and the distance it
+     crosses cannot disagree */
+  width: var(--liq-thumb, 36px); height: var(--liq-thumb, 36px);
+  margin-top: calc(var(--liq-thumb, 36px) / -2);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ink) 19%, var(--bg));
+  /* transform is Framer's — a CSS transition on the same
+     property re-interpolates every frame the spring writes,
+     and what you see is the easing, not the spring. The colour
+     is the only thing here that eases, and it is the only one
+     that can: everything else about this element is written
+     into one transform by Framer. */
+  transition: background 420ms ease;
+}
+/* ON inverts the pair: ink track, slab droplet. The two states
+   are the two ends of the fill's ramp and never two values of
+   the same one. */
+.liq-sw[data-on="true"] .liq-thumb { background: var(--bg); }
+@media (prefers-reduced-motion: reduce) {
+  .liq-thumb, .liq-sw { transition-duration: 160ms; }
+}
+
+/* Fill the sensitivity row instead of leaving the fixed-width demo
+   track aligned left. The reading stays inside the same right edge. */
+#sensitivity-control { width: 100%; }
+.wks { width: 100%; padding: 16px 0; justify-content: center; }
+.wks-track { flex: 1 1 auto; justify-content: space-between; }
+.wks-bar { flex: 0 1 3px; }
+.wks-value { flex: 0 0 4ch; text-align: right; }
+/* Keep Bencho's internal geometry and spring tuning; its local()
+   coordinate conversion already accounts for visual scale. A 44px
+   host and extended hit area retain a comfortable touch target. */
+.liq-well { position: relative; width: 69px; height: 44px; }
+.liq-sw { position: absolute; right: 0; transform: scale(.75); transform-origin: right center; }
+.liq-sw::before { content: ''; position: absolute; inset: -7px 0; border-radius: inherit; }
+
+/* Phone-first shell: safe areas stay clear of the notch and home
+   indicator; the main control uses the spare vertical space. */
+html { -webkit-text-size-adjust: 100%; }
+.app {
+  width: 100%; max-width: 430px; min-height: 100svh;
+  padding: max(20px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
+}
+.top { padding-bottom: 18px; }
+.brand { font-size: 29px; }
+.test { font-size: 10px; letter-spacing: 1.3px; }
+.connection { margin-top: 20px; font-size: 13px; gap: 8px; }
+.flavor { font-size: 12px; }
+.middle { min-height: 270px; padding: 20px 0; }
+.cartonbtn { padding: 8px 28px; touch-action: manipulation; }
+.cartonbtn img { width: clamp(128px, 40vw, 174px); height: clamp(128px, 40vw, 174px); }
+.label { font-size: 24px; margin-top: 16px; }
+.sub { font-size: 13px; line-height: 1.6; }
+.wave { height: 48px; margin-top: 22px; gap: 3px; }
+.wave i { flex: 0 1 4px; min-width: 2px; }
+.bottom { padding-top: 18px; }
+.smallrow { font-size: 13px; margin-top: 0; }
+.wks { padding: 10px 0; }
+.wks-value { font-size: 15px; }
+.privacy { font-size: 12px; line-height: 1.6; margin-top: 14px; }
+.liq-well { width: 69px; min-height: 44px; }
+@media(hover:none) { .cartonbtn:hover { transform: none; } .cartonbtn:active { transform: scale(.96); } }
+@media(max-height:700px) {
+  .app { padding-top: max(14px, env(safe-area-inset-top)); padding-bottom: max(14px, env(safe-area-inset-bottom)); }
+  .middle { padding: 12px 0; min-height: 240px; }
+  .cartonbtn img { width: 128px; height: 128px; }
+  .label { margin-top: 10px; font-size: 22px; }
+  .wave { margin-top: 12px; height: 40px; }
+  .connection { margin-top: 14px; }
+  .privacy { margin-top: 8px; }
+}
+
+/* The filter is a sibling control: opening settings must never
+   toggle the microphone or nest a button inside another button. */
+.carton-wrap { position: relative; }
+.carton-images { display: grid; perspective: 600px; }
+.carton-images img { grid-area: 1 / 1; transition: opacity 280ms ease, transform 420ms cubic-bezier(.2,.8,.2,1); transform-origin: 50% 65%; }
+.carton-open { opacity: 0; transform: scaleY(.88) rotateX(-18deg); }
+.live .carton-closed { opacity: 0; transform: scaleY(.94); }
+.live .carton-open { opacity: 1; transform: scaleY(1) rotateX(0); }
+.cartonbtn:disabled { opacity: .75; }
+#filters-control { position: absolute; right: 8px; bottom: 0; }
+.filter-trigger { position: relative; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 50%; background: var(--bg); color: var(--ink); touch-action: manipulation; }
+.filter-trigger circle { fill: var(--bg); }
+.preset-dot { width: 6px; height: 6px; position: absolute; right: 5px; top: 5px; border-radius: 50%; background: var(--active); }
+.filter-open { overflow: hidden; }
+.filter-dialog { padding: 0; border: 0; background: transparent; color: var(--ink); width: min(100%,430px); max-width: 100%; max-height: 94svh; margin: auto auto 0; overflow-y: auto; overscroll-behavior: contain; }
+.filter-dialog::backdrop { background: #100c0980; backdrop-filter: blur(5px); }
+.filter-sheet { background: var(--bg); padding: 12px 24px max(24px,env(safe-area-inset-bottom)); border-radius: 28px 28px 0 0; border: 1px solid var(--line); animation: sheet-in 260ms ease-out; }
+@keyframes sheet-in { from { transform: translateY(35px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.sheet-handle { width: 32px; height: 4px; border-radius: 4px; margin: 0 auto 22px; background: var(--line); }
+.filter-heading { display: flex; align-items: center; justify-content: space-between; }
+.filter-kicker { color: var(--muted); font-size: 10px; letter-spacing: 1.5px; margin: 0 0 6px; }
+.filter-heading h2 { font: 500 28px Fredoka,sans-serif; margin: 0; }
+.filter-close { width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--ink); font-size: 26px; }
+.filter-intro { color: var(--muted); font-size: 13px; margin: 12px 0 0; }
+.mag { position: relative; margin: 22px auto 16px; }
+.mag-chip { position: absolute; border: 0; padding: 0; background: none; border-radius: 50%; cursor: pointer; touch-action: manipulation; }
+.mag-chip:focus-visible { outline: 2px solid var(--edge); outline-offset: 4px; }
+.mag-skin { display: block; width: 100%; height: 100%; border-radius: inherit; transform: translate(var(--lx,0px),var(--ly,0px)); transition: transform 180ms ease; }
+.mag-chip[data-on] .mag-skin { box-shadow: 0 0 0 2px var(--bg),0 0 0 4px var(--ink); }
+.mag-mark { width: 100%; height: 100%; display: block; border-radius: inherit; user-select: none; }
+.filter-reading { text-align: center; min-height: 64px; }
+.filter-reading h3 { font: 500 23px Fredoka,sans-serif; margin: 0 0 8px; }
+.filter-reading p { font-size: 13px; color: var(--muted); margin: 0; }
+.filter-disclaimer { text-align: center; font-size: 12px; line-height: 1.5; color: var(--muted); margin: 20px 0 16px; }
+.filter-done { width: 100%; min-height: 48px; border: 0; border-radius: 16px; background: var(--ink); color: var(--bg); font-weight: 800; }
+@media(prefers-reduced-motion:reduce) { .carton-images img { transition: none; } .filter-sheet { animation: none; } .mag-skin { transition: none; } }
+
+/* A short, centered instruction in the brand's rounded type. */
+#label {
+  width: 100%; text-align: center;
+  font-family: Fredoka, 'Arial Rounded MT Bold', sans-serif;
+  font-weight: 500; font-size: 26px; line-height: 1.2;
+  letter-spacing: -.25px; margin: 20px 0 10px;
+}
+#hint { margin: 0; padding: 0 8px; text-align: center; }
+@media(max-height:700px) { #label { font-size: 24px; margin-top: 14px; margin-bottom: 8px; } }
+
+/* Keep the two audio controls together without a second visual
+   section. The slider retains its ARIA label and percentage. */
+.middle .bottom { width: 100%; padding: 0; margin: 14px 0 0; border: 0; }
+.middle .bottom .wks { padding: 6px 0; gap: 0; }
+.middle .bottom .wks-value { display: none; }
+.middle { justify-content: center; }
+@media(max-height:700px) { .middle .bottom { margin-top: 10px; } }
+
+/* Give the phone's main interaction more presence without scaling
+   the whole page or shrinking its touch targets. */
+.middle { padding: 24px 0 32px; gap: 0; }
+.cartonbtn img { width: clamp(180px, 55vw, 232px); height: clamp(180px, 55vw, 232px); }
+.cartonbtn { padding: 10px 30px; }
+#filters-control { right: 7px; bottom: 5px; }
+#label { font-size: 29px; margin: 24px 0 10px; }
+#hint { font-size: 14px; line-height: 1.55; }
+.wave { margin-top: 28px; height: 54px; }
+.middle .bottom { margin-top: 8px; }
+.middle .bottom .wks { padding: 8px 0; }
+@media(max-height:700px) {
+  .middle { padding: 18px 0 22px; }
+  .cartonbtn img { width: 166px; height: 166px; }
+  #label { font-size: 26px; margin-top: 18px; margin-bottom: 8px; }
+  #hint { font-size: 13px; }
+  .wave { margin-top: 18px; height: 44px; }
+  .middle .bottom { margin-top: 6px; }
+}

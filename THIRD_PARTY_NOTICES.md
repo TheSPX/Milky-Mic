@@ -1,0 +1,48 @@
+# WakeSlider and LiquidToggle
+
+Wake slider and Liquid toggle components by Bencho, supplied by the project owner under the MIT license.
+Source and license: https://bencho.dev/licence
+
+The supplied explanatory comments are preserved in src/components/WakeSlider.tsx and dist/styles.css.
+Adaptations: project color tokens, sensitivity callback, initial value, accessible label,
+percentage reading, responsive sizing, reduced motion and pointer-capture cleanup.
+
+MIT License
+
+Copyright (c) Bencho
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+LiquidToggle: explanatory comments preserved in src/components/LiquidToggle.tsx and dist/styles.css.
+Uses the supplied single-circle implementation; no goo filter or third-party imagery is required.
+
+MagneticSelect: adapted from the supplied Bencho component under the same MIT license.
+Preset artwork is original inline SVG, not Bencho imagery. The cluster field, delayed
+springs and hover lean are retained; selection is controlled by the filter overlay.
+
+---
+
+## Fonts (bundled in `web/public/fonts/` and loaded by the phone app)
+
+- **Fredoka** and **Nunito**, from Google Fonts. Licensed under the SIL Open Font License 1.1 (https://openfontlicense.org).
+
+## Not bundled
+
+- **VB-Cable** by VB-Audio (https://vb-audio.com/Cable/) is a separate, free driver you install yourself. It is not part of this repository.
+- npm packages keep their own licenses; see each package in `node_modules`.

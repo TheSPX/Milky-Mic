@@ -1,0 +1,40 @@
+/* Receiver additions on top of the handoff stylesheet (styles.css), using its tokens. */
+:root { --warn: #a8452d; }
+body.chocolate { --warn: #f0a58d; }
+
+.test { font-family: inherit; }
+.kicker { margin: 10px 0 0; text-align: center; font-size: 10px; letter-spacing: 1.5px; color: var(--muted); }
+
+.cards { display: flex; flex-direction: column; gap: 14px; margin-top: 8px; }
+.card { border: 1px solid var(--line); background: var(--panel); border-radius: 20px; padding: 16px 18px; }
+.card h2 { margin: 0 0 10px; font: 600 10px Nunito, system-ui, sans-serif; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+.small { margin: 8px 0 0; font-size: 13px; line-height: 1.55; color: var(--muted); }
+.small:first-of-type { margin-top: 0; }
+.center { text-align: center; }
+.warn { color: var(--warn); }
+.ip { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+select {
+  width: 100%; min-height: 44px; padding: 10px 12px; border-radius: 14px; border: 1px solid var(--line);
+  background: var(--bg); color: var(--ink); font: inherit;
+}
+.btn {
+  width: 100%; min-height: 48px; margin-top: 14px; border: 0; border-radius: 16px;
+  background: var(--ink); color: var(--bg); font-weight: 800;
+}
+.btn:disabled { opacity: .35; cursor: default; }
+.btn[hidden] { display: none; }
+
+/* the mute state: flatten the carton's open look slightly so it reads as paused */
+body.muted .carton-open { filter: grayscale(.6); opacity: .8 !important; }
+
+/* the page is a phone-width column; give it room on a desktop screen */
+@media (min-width: 700px) {
+  .app { padding-top: 56px; }
+}
+
+.credit { margin: 28px 0 8px; text-align: center; font-size: 12px; color: var(--muted); }
+.credit a { color: var(--ink); text-underline-offset: 3px; }
+
+.code { margin: 0 0 6px; text-align: center; font: 500 40px/1.2 Fredoka, system-ui, sans-serif; letter-spacing: 6px; color: var(--ink); font-variant-numeric: tabular-nums; user-select: all; }
+.btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }

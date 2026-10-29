@@ -1,0 +1,43 @@
+{
+  "name": "milky-mic-app",
+  "version": "1.0.0",
+  "description": "Milky Mic phone app: turns your phone into a PC microphone over Wi-Fi.",
+  "author": "TheSPX (https://github.com/TheSPX)",
+  "license": "MIT",
+  "homepage": "https://github.com/TheSPX/milky-mic",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheSPX/milky-mic.git"
+  },
+  "main": "index.ts",
+  "dependencies": {
+    "@expo-google-fonts/fredoka": "^0.4.1",
+    "@expo-google-fonts/nunito": "^0.4.2",
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "@siteed/audio-studio": "^3.2.1",
+    "@siteed/expo-audio-studio": "^3.2.2",
+    "buffer": "^6.0.3",
+    "expo": "~58.0.21",
+    "expo-build-properties": "~58.0.11",
+    "expo-dev-client": "~58.0.17",
+    "expo-device": "~58.0.5",
+    "expo-font": "~58.0.11",
+    "expo-status-bar": "~58.0.4",
+    "framer-motion": "^14.7.1",
+    "react": "19.3.0",
+    "react-native": "0.88.1",
+    "react-native-svg": "15.16.0",
+    "react-native-udp": "^4.1.7"
+  },
+  "devDependencies": {
+    "@types/react": "~19.3.0",
+    "typescript": "~6.0.3"
+  },
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web"
+  },
+  "private": true
+}

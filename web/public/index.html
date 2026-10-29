@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fffdf7">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' ws://localhost:48770 ws://127.0.0.1:48770">
+<title>Milky Mic — PC receiver</title>
+<meta name="author" content="TheSPX">
+<meta name="description" content="Milky Mic receiver: hear your phone's microphone on this PC.">
+<link rel="preload" as="image" href="carton-open.png">
+<link rel="preload" as="image" href="chocolate-open.png">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="receiver.css">
+<body class="idle">
+<main class="app">
+  <section class="top" aria-label="Phone status">
+    <div class="row">
+      <div>
+        <div class="brand"><span class="brand-word">milky mic</span></div>
+        <p class="test">PC RECEIVER</p>
+      </div>
+      <div id="theme-control" data-stroke="on"></div>
+    </div>
+    <div class="connection" role="status" aria-live="polite">
+      <span class="dot"></span><span id="status">Starting…</span><span class="flavor" id="flavor">White Milky</span>
+    </div>
+  </section>
+
+  <section class="middle" aria-label="Phone microphone">
+    <div class="carton-wrap">
+      <button class="cartonbtn" id="toggle" aria-pressed="false" aria-label="Mute sound on this PC">
+        <span class="carton-images">
+          <img id="cartonicon" class="carton-closed" src="carton.png" alt="Milky Mic carton">
+          <img id="cartonopen" class="carton-open" src="carton-open.png" alt="" aria-hidden="true">
+        </span>
+      </button>
+      <div id="filters-control"></div>
+    </div>
+    <h1 class="label" id="label">Waiting for your phone</h1>
+    <p class="sub" id="hint">Open Milky Mic on your phone, on the same Wi-Fi as this PC.</p>
+    <div class="wave" id="wave" role="img" aria-label="No sound coming in"></div>
+    <section class="bottom" aria-label="Volume">
+      <p class="kicker">VOLUME</p>
+      <input id="sensitivity" type="hidden" value="100">
+      <div id="sensitivity-control"></div>
+    </section>
+  </section>
+
+  <section class="cards">
+    <div class="card">
+      <h2>Pairing code</h2>
+      <p class="code" id="code" aria-label="Pairing code">······</p>
+      <p class="small">Type this code into the phone once. Only phones that know it can connect.</p>
+      <button class="btn ghost" id="newcode">Make a new code</button>
+    </div>
+
+    <div class="card">
+      <h2>Phone</h2>
+      <p class="small" id="phoneLine">Nothing connected yet.</p>
+      <p class="small">Not showing up on the phone? Type this address there: <span class="ip" id="ips">…</span></p>
+      <button class="btn" id="drop" disabled>Disconnect phone</button>
+    </div>
+
+    <div class="card">
+      <h2>Send sound to</h2>
+      <select id="out" aria-label="Output device"></select>
+      <p class="small" id="cableHint"></p>
+      <button class="btn" id="names" hidden>Show my audio devices</button>
+    </div>
+
+    <p class="small center" id="err" role="alert"></p>
+  </section>
+
+  <footer class="credit">Made by <a href="https://github.com/TheSPX" target="_blank" rel="noopener">TheSPX</a> · open source · MIT</footer>
+</main>
+<script src="app.js"></script>
+<script type="module" src="wake-slider.js"></script>
+</body>
+</html>

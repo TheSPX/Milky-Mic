@@ -1,0 +1,18 @@
+{
+  "name": "milky-mic-web",
+  "version": "1.0.0",
+  "description": "Milky Mic receiver: a local website that plays your phone's microphone on your PC.",
+  "author": "TheSPX (https://github.com/TheSPX)",
+  "license": "MIT",
+  "homepage": "https://github.com/TheSPX/milky-mic",
+  "repository": { "type": "git", "url": "git+https://github.com/TheSPX/milky-mic.git" },
+  "private": true,
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}

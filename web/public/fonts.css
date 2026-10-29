@@ -1,0 +1,4 @@
+/* Bundled so the page works offline and never calls Google Fonts. Both families are SIL OFL. */
+@font-face { font-family: Fredoka; font-weight: 500; font-display: swap; src: url('fonts/Fredoka_500Medium.ttf') format('truetype'); }
+@font-face { font-family: Nunito; font-weight: 400 700; font-display: swap; src: url('fonts/Nunito_600SemiBold.ttf') format('truetype'); }
+@font-face { font-family: Nunito; font-weight: 800; font-display: swap; src: url('fonts/Nunito_800ExtraBold.ttf') format('truetype'); }

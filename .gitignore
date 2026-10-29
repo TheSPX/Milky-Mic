@@ -1,0 +1,24 @@
+# dependencies and build output
+node_modules/
+android/.expo/
+android/android/
+android/dist/
+android/build.log
+*.log
+web/pairing.json
+
+# local, personal or superseded files
+archive/
+MilkyMemory.md
+Logo.png.png
+icon.png.png
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# built APKs go on GitHub Releases, not in git
+release/
+*.apk
