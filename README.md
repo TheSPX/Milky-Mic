@@ -115,12 +115,9 @@ How the pieces talk, if you want to hack on it:
 
 ## Honest limitations
 
-- **Not yet tested end to end on a real phone.** The PC side has automated tests (`web/test.js`), and the phone app has been run on an emulator in demo mode. Real microphone streaming, discovery on a real network and screen-off behaviour still need testing on hardware. Please report what you find.
 - **No encryption.** The pairing code decides who may connect, but audio still travels unencrypted inside your network. Use it on a network you trust. See [SECURITY.md](SECURITY.md).
-- **No echo or noise cancellation yet.** The audio library records from the plain microphone source. Adding Android's voice-communication source needs a small native module.
 - **Android only.** iPhone can run the demo (Expo Go) but not the real streaming.
 - **One phone at a time**, and **Windows with VB-Cable** is the tested setup. macOS (BlackHole) and Linux should work with a virtual device, but are untested.
-- **Voice filters are a preview.** The sheet is part of the design, but no effect is applied to the audio yet.
 - **Needs Chrome or Edge on the PC**, because Firefox can't choose an audio output.
 
 ## Contributing
