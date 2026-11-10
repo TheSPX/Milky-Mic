@@ -67,7 +67,7 @@ npm install
 npx expo run:android
 ```
 
-On Windows, two things trip people up:
+On Windows & Mac ( soon ) , two things trip people up:
 
 - **Gradle complains about Java 8.** Point it at Android Studio's JDK first:
 
