@@ -8,10 +8,6 @@ Turn your Android phone into a PC microphone over Wi-Fi. Free, open source, no a
 [![License: MIT](https://img.shields.io/badge/license-MIT-c8f279?style=flat-square&labelColor=171717)](LICENSE)
 [![Made by TheSPX](https://img.shields.io/badge/made%20by-TheSPX-171717?style=flat-square)](https://github.com/TheSPX)
 
-<img src="docs\screenshots\chocolate-home.png" width="220" alt="Milky Mic, White Milky theme"> <img src="docs/screenshots/white-active.png" width="220" alt="Mic active"> <img src="docs/screenshots/chocolate-home.png" width="220" alt="Chocolate Milk theme">
-
-<sub>Design previews of the phone app, in both themes.</sub>
-
 </div>
 
 ---
